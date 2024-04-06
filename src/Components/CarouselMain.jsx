@@ -13,7 +13,9 @@ const CarouselMain = () => {
     const interval = setInterval(() => {
       setIsTransitioning(true); // Start transition
       setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+        setCurrentIndex((prevIndex) =>
+          prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        );
         setIsTransitioning(false); // End transition
       }, 500); // Adjust timing to match CSS transition duration
     }, 3000);
@@ -22,29 +24,15 @@ const CarouselMain = () => {
   }, [images.length]);
 
   return (
-    <div
-      style={{
-        height: "70vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "40px",
-      }}
-    >
+    <div className="h-screen flex justify-center items-center p-20 ">
       {images.map((img, index) => (
         <img
           key={index}
           src={img}
-          alt=""
-          style={{
-            maxWidth: "100%",
-            maxHeight: "80%",
-            objectFit: "cover",
-            position: "absolute",
-            opacity: index === currentIndex ? 1 : 0,
-            transition: "opacity 0.9s ease-in-out", // CSS transition for opacity
-            zIndex: index === currentIndex ? 1 : 0,
-          }}
+          alt=""za
+          className={`max-w-screen-xl max-h-3/4 absolute transition-opacity ${
+            index === currentIndex ? "opacity-100" : "opacity-0"
+          } ${index === currentIndex ? "z-10" : "z-0"}`}
         />
       ))}
     </div>
